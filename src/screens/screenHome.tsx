@@ -6,6 +6,7 @@ import Theme, { themeStyles, hasWebFocusableUI } from '../theme';
 import config from '../../platformAssets/renative.runtime.json';
 import packageJson from '../../package.json';
 import icon from '../../platformAssets/runtime/logo.png';
+import { List } from '../components/list';
 
 const styles = StyleSheet.create({
     appContainerScroll: {
@@ -94,6 +95,7 @@ v
                     }}
                     onBecameFocused={handleFocus}
                 />
+                <List />
                 <FocusableView style={{ marginTop: 20, flexDirection: 'row' }} onBecameFocused={handleFocus}>
                     <Button
                         iconFont="fontAwesome"
