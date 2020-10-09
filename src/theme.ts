@@ -1,11 +1,11 @@
-import { getScaledValue, isEngineWeb, isFactorMobile, isFactorDesktop,
-    isFactorTv, isEngineNative, isFactorBrowser, registerServiceWorker, StyleSheet } from 'renative';
+import { getScaledValue, isEngineWeb, isFactorMobile, isFactorDesktop, isPlatformTvos,
+    isFactorTv, isEngineNative, isFactorBrowser, registerServiceWorker, StyleSheet, Api } from 'renative';
 // import '../platformAssets/runtime/fontManager';
 
 if (isFactorBrowser) registerServiceWorker();
 
 export const hasMobileWebUI = isFactorMobile && isEngineWeb;
-export const hasHorizontalMenu = !isFactorMobile && !isFactorDesktop && !hasMobileWebUI;
+export const hasHorizontalMenu = isPlatformTvos;
 export const hasFullScreenMenu = hasMobileWebUI;
 export const hasVerticalMenu = !hasHorizontalMenu && !hasFullScreenMenu;
 export const hasWebFocusableUI = isEngineWeb && isFactorTv;

@@ -5,7 +5,7 @@ import { withFocusable } from '@noriginmedia/react-spatial-navigation';
 import Theme, { themeStyles, hasWebFocusableUI } from '../theme';
 import config from '../../platformAssets/renative.runtime.json';
 import packageJson from '../../package.json';
-import icon from '../platformAssets/runtime/logo.png';
+import icon from '../../platformAssets/runtime/logo.png';
 
 const styles = StyleSheet.create({
     appContainerScroll: {
