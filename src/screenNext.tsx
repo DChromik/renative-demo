@@ -19,8 +19,6 @@ const styles = StyleSheet.create({
     }
 });
 
-const FocusableView = View;
-
 const ScreenHome = (props) => {
     const [bgColor, setBgColor] = useState(Theme.color1);
     const navigate = useNavigate(props);
@@ -92,7 +90,9 @@ v
                     }}
                     onBecameFocused={handleFocus}
                 />
-                <FocusableView style={{ marginTop: 20, flexDirection: 'row' }} onBecameFocused={handleFocus}>
+                <View
+                    style={{ marginTop: 20, flexDirection: 'row' }}
+                >
                     <Button
                         iconFont="fontAwesome"
                         className="focusable"
@@ -117,7 +117,7 @@ v
                             openURL('https://twitter.com/renative');
                         }}
                     />
-                </FocusableView>
+                </View>
             </ScrollView>
         </View>
     );

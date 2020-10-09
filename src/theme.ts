@@ -23,7 +23,7 @@ const theme = {
     iconSize: getScaledValue(40),
     menuWidth: hasHorizontalMenu || hasFullScreenMenu ? '100%' : 280,
     menuHeight: hasHorizontalMenu ? getScaledValue(80) : '100%',
-    statusBar: 'light-content'
+    statusBar: 'light-content' as const
 };
 
 export const themeStyles = StyleSheet.create({
