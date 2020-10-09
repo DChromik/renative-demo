@@ -1,0 +1,33 @@
+{
+    "extend": "base",
+    "id": "helloworld",
+    "common": {
+        "id": "com.twentyfouri.renativedemo",
+        "title": "Renative demo",
+        "description": "Cross-platform application project based on ReNative",
+        "buildSchemes": {
+            "debug": {
+                "id": "renative.helloworld.debug",
+                "title": "ReNative Debug"
+            },
+            "release": {}
+        }
+    },
+    "platforms": {
+        "android": {
+            "buildSchemes": {
+                "debug": {}
+            }
+        },
+        "ios": {
+            "buildSchemes": {
+                "debug": {}
+            }
+        },
+        "tvos": {
+            "buildSchemes": {
+                "debug": {}
+            }
+        }
+    }
+}
