@@ -3,10 +3,8 @@ import { View } from 'react-native';
 import { Router, navigate } from '@reach/router';
 import { Api } from 'renative';
 
-import ScreenHome from '../screenHome';
-import ScreenMyPage from '../screenMyPage';
-import ScreenModal from '../screenModal';
-import Menu from '../menu';
+import { Home, Modal, MyPage } from '../screens';
+import Menu from '../components/menu';
 import { themeStyles } from '../theme';
 
 if (Api.engine !== 'next') {
@@ -18,7 +16,7 @@ const styles = {
     container: {
         width: '100%',
         height: '100%',
-        position: 'relative'
+        position: 'relative' as const
     }
 };
 
@@ -27,9 +25,9 @@ const App = () => (
         <Menu focusKey="menu" navigate={navigate} />
         <View style={styles.container}>
             <Router>
-                <ScreenHome path="/" />
-                <ScreenMyPage path="my-page" />
-                <ScreenModal path="modal" />
+                <Home path="/" />
+                <MyPage path="my-page" />
+                <Modal path="modal" />
             </Router>
         </View>
     </View>

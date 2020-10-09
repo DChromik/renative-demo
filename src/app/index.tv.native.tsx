@@ -2,10 +2,8 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import ScreenHome from '../screenHome';
-import ScreenMyPage from '../screenMyPage';
-import ScreenModal from '../screenModal';
-import Menu from '../menu';
+import { Home, Modal, MyPage } from '../screens';
+import Menu from '../components/menu';
 
 const ModalStack = createStackNavigator();
 const TabStack = createMaterialTopTabNavigator();
@@ -17,8 +15,8 @@ const TabNavigator = () => (
         swipeEnabled={false}
         timingConfig={{ duration: 0.001 }}
     >
-        <TabStack.Screen name="home" component={ScreenHome} />
-        <TabStack.Screen name="my-page" component={ScreenMyPage} />
+        <TabStack.Screen name="home" component={Home} />
+        <TabStack.Screen name="my-page" component={MyPage} />
     </TabStack.Navigator>
 );
 
@@ -30,7 +28,7 @@ const App = () => (
             screenOptions={{ animationEnabled: false }}
         >
             <ModalStack.Screen name="stack" component={TabNavigator} />
-            <ModalStack.Screen name="modal" component={ScreenModal} />
+            <ModalStack.Screen name="modal" component={Modal} />
         </ModalStack.Navigator>
     </NavigationContainer>
 );

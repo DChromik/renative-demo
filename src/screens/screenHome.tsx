@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Text, Image, View, StyleSheet, ScrollView, PixelRatio, Linking } from 'react-native';
-import { Api, Button, getScaledValue, useNavigate, useOpenURL } from 'renative';
-// import { withFocusable } from '@noriginmedia/react-spatial-navigation';
-import Theme, { themeStyles, hasWebFocusableUI } from './theme';
-import config from '../platformAssets/renative.runtime.json';
-import packageJson from '../package.json';
+import { Text, Image, View, ScrollView, PixelRatio } from 'react-native';
+import { Api, Button, getScaledValue, useNavigate, useOpenURL, StyleSheet } from 'renative';
+import { withFocusable } from '@noriginmedia/react-spatial-navigation';
+import Theme, { themeStyles, hasWebFocusableUI } from '../theme';
+import config from '../../platformAssets/renative.runtime.json';
+import packageJson from '../../package.json';
 import icon from '../platformAssets/runtime/logo.png';
 
 const styles = StyleSheet.create({
@@ -19,6 +19,8 @@ const styles = StyleSheet.create({
     }
 });
 
+const FocusableView = withFocusable()(View);
+
 const ScreenHome = (props) => {
     const [bgColor, setBgColor] = useState(Theme.color1);
     const navigate = useNavigate(props);
@@ -29,6 +31,7 @@ const ScreenHome = (props) => {
 
     if (hasWebFocusableUI) {
         scrollRef = useRef(null);
+        const { setFocus } = props;
         handleFocus = ({ y }) => {
             scrollRef.current.scrollTo({ y });
         };
@@ -36,7 +39,7 @@ const ScreenHome = (props) => {
             if (direction === 'up') scrollRef.current.scrollTo({ y: 0 });
         };
         useEffect(() => function cleanup() {
-            props.setFocus('menu');
+            setFocus('menu');
         }, []);
     }
     return (
@@ -76,6 +79,7 @@ v
                     }}
                     onBecameFocused={handleFocus}
                     onArrowPress={handleUp}
+                    testID="try-me-button"
                 />
                 <Button
                     style={themeStyles.button}
@@ -90,9 +94,7 @@ v
                     }}
                     onBecameFocused={handleFocus}
                 />
-                <View
-                    style={{ marginTop: 20, flexDirection: 'row' }}
-                >
+                <FocusableView style={{ marginTop: 20, flexDirection: 'row' }} onBecameFocused={handleFocus}>
                     <Button
                         iconFont="fontAwesome"
                         className="focusable"
@@ -117,10 +119,10 @@ v
                             openURL('https://twitter.com/renative');
                         }}
                     />
-                </View>
+                </FocusableView>
             </ScrollView>
         </View>
     );
 };
 
-export default ScreenHome;
+export default hasWebFocusableUI ? withFocusable()(ScreenHome) : ScreenHome;
