@@ -1,0 +1,30 @@
+{
+    "projectName": "rnv-demo",
+    "workspaceID": "rnv",
+    "paths": {
+        "appConfigsDir": "./appConfigs",
+        "platformTemplatesDir": "$RNV_HOME/platformTemplates",
+        "entryDir": "./",
+        "platformAssetsDir": "./platformAssets",
+        "platformBuildsDir": "./platformBuilds",
+        "projectConfigDir": "./projectConfig"
+    },
+    "defaults": {
+        "title": "Renative demo",
+        "id": "com.twentyfouri.renativedemo",
+        "supportedPlatforms": [
+            "android",
+            "ios",
+            "tvos",
+            "web"
+        ]
+    },
+    "templates": {
+        "renative-template-hello-world": {
+            "version": "0.30.4"
+        }
+    },
+    "currentTemplate": "renative-template-hello-world",
+    "isNew": true,
+    "isMonorepo": false
+}
