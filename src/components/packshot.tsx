@@ -3,7 +3,7 @@ import { Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { getScaledValue } from 'renative';
 import theme from '../theme';
 
-const makeImageUrl = (path: string) => `https://image.tmdb.org/t/p/w500${path}?api_key=b91324841c1eb08f85caaa629ab83b9f`;
+const makeImageUrl = (path: string) => `https://image.tmdb.org/t/p/w500${path}`;
 
 export type Props = {
     label: string;
