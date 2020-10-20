@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
     image: {
-        marginBottom: getScaledValue(30),
         width: getScaledValue(83),
         height: getScaledValue(97),
     },

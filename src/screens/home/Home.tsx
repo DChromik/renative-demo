@@ -17,21 +17,15 @@ type Props = {
 const FocusableView = withFocusable()(View);
 
 const ScreenHome = (props: Props) => {
-    const [bgColor, setBgColor] = useState(Theme.color1);
-    const navigate = useNavigate(props);
     const openURL = useOpenURL();
     let scrollRef;
     let handleFocus;
-    let handleUp;
 
     if (hasWebFocusableUI) {
         scrollRef = useRef(null);
         const { setFocus } = props;
         handleFocus = ({ y }) => {
             scrollRef.current.scrollTo({ y });
-        };
-        handleUp = (direction) => {
-            if (direction === 'up') scrollRef.current.scrollTo({ y: 0 });
         };
         useEffect(() => function cleanup() {
             setFocus('menu');
@@ -40,58 +34,14 @@ const ScreenHome = (props: Props) => {
     return (
         <View style={themeStyles.screen}>
             <ScrollView
-                style={{ backgroundColor: bgColor }}
+                style={{ backgroundColor: Theme.color1 }}
                 ref={scrollRef}
                 contentContainerStyle={themeStyles.container}
             >
-                <Image style={styles.image} source={icon} />
-                <Text style={themeStyles.textH2}>
-                    {config.welcomeMessage}
-                </Text>
-                <Text style={themeStyles.textH2}>
-                    v
-                    {packageJson.version}
-                </Text>
-                <Text style={themeStyles.textH3}>
-                    {`platform: ${Api.platform}, factor: ${Api.formFactor}, engine: ${Api.engine}`}
-                </Text>
-                <Text style={themeStyles.textH3}>
-                    {`hermes: ${global.HermesInternal === undefined ? 'no' : 'yes'}`}
-                </Text>
-                <Text style={themeStyles.textH3}>
-                    {`pixelRatio: ${PixelRatio.get()}, ${PixelRatio.getFontScale()}`}
-                </Text>
-                <Button
-                    style={themeStyles.button}
-                    textStyle={themeStyles.buttonText}
-                    title="Try Me!"
-                    className="focusable"
-                    onPress={() => {
-                        setBgColor(bgColor === '#666666' ? Theme.color1 : '#666666');
-                    }}
-                    onEnterPress={() => {
-                        setBgColor(bgColor === '#666666' ? Theme.color1 : '#666666');
-                    }}
-                    onBecameFocused={handleFocus}
-                    onArrowPress={handleUp}
-                    testID="try-me-button"
-                />
-                <Button
-                    style={themeStyles.button}
-                    textStyle={themeStyles.buttonText}
-                    title="Now Try Me!"
-                    className="focusable"
-                    onPress={() => {
-                        navigate('my-page', { replace: false });
-                    }}
-                    onEnterPress={() => {
-                        navigate('my-page', { replace: false });
-                    }}
-                    onBecameFocused={handleFocus}
-                />
                 <Suspense fallback={<Text>Fetching list</Text>}>
                     <List />
                 </Suspense>
+                <Image style={styles.image} source={icon} />
                 <FocusableView
                     style={styles.buttonContainer}
                     onBecameFocused={handleFocus}

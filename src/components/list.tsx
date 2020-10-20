@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 const renderPackshot: ListRenderItem<MovieAsset> = ({ item }) => (
     <Packshot
         label={item.title}
-        backdrop={item.backdropPath}
+        poster={item.posterPath}
     />
 );
 

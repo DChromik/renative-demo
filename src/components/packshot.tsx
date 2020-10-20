@@ -3,8 +3,11 @@ import { Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { getScaledValue } from 'renative';
 import theme from '../theme';
 
+const makeImageUrl = (path: string) => `https://image.tmdb.org/t/p/w500${path}?api_key=b91324841c1eb08f85caaa629ab83b9f`;
+
 export type Props = {
     label: string;
+    poster: string;
 };
 
 const styles = StyleSheet.create({
@@ -13,7 +16,7 @@ const styles = StyleSheet.create({
         height: 200,
         margin: 10,
         borderWidth: getScaledValue(2),
-        borderColor: theme.color2,
+        borderColor: theme.color3,
     },
     image: {
         width: '100%',
@@ -33,11 +36,11 @@ const styles = StyleSheet.create({
     },
 });
 
-export const Packshot = ({ label }: Props) => (
+export const Packshot = ({ label, poster }: Props) => (
     <TouchableOpacity style={styles.container}>
         <Image
             style={styles.image}
-            source={{ uri: 'https://picsum.photos/120/200' }}
+            source={{ uri: makeImageUrl(poster) }}
         />
         <Text
             style={styles.text}
