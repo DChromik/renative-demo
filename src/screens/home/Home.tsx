@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { Text, Image, View, ScrollView, PixelRatio } from 'react-native';
 import { Api, Button, useNavigate, useOpenURL } from 'renative';
 import { withFocusable } from '@noriginmedia/react-spatial-navigation';
@@ -89,7 +89,9 @@ const ScreenHome = (props: Props) => {
                     }}
                     onBecameFocused={handleFocus}
                 />
-                <List data={DATA} />
+                <Suspense fallback={<Text>Fetching list</Text>}>
+                    <List />
+                </Suspense>
                 <FocusableView
                     style={styles.buttonContainer}
                     onBecameFocused={handleFocus}

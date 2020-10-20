@@ -1,10 +1,12 @@
 import React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
-import { Packshot, Props as PackshotProps } from './Packshot';
+import { FlatList, ListRenderItem, StyleSheet } from 'react-native';
+import { tmdbApi } from 'tmdb-api';
+import { MovieAsset } from 'tmdb-api/src/models/movie-asset';
+import { Packshot } from './Packshot';
 
-type Props = {
-    data: PackshotProps[];
-};
+const popularMovies = tmdbApi.getPopularMovies();
+
+type Props = {};
 
 const styles = StyleSheet.create({
     container: {
@@ -12,11 +14,22 @@ const styles = StyleSheet.create({
     },
 });
 
-export const List = ({ data }: Props) => (
-    <FlatList
-        style={styles.container}
-        horizontal
-        data={data}
-        renderItem={({ item: { label } }) => <Packshot label={label} />}
+const renderPackshot: ListRenderItem<MovieAsset> = ({ item }) => (
+    <Packshot
+        label={item.title}
+        backdrop={item.backdropPath}
     />
 );
+
+export const List = () => {
+    const movies = popularMovies.read();
+
+    return (
+        <FlatList
+            style={styles.container}
+            horizontal
+            data={movies.results}
+            renderItem={renderPackshot}
+        />
+    );
+};
