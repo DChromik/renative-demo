@@ -1,28 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Text, Image, View, ScrollView, PixelRatio } from 'react-native';
-import { Api, Button, getScaledValue, useNavigate, useOpenURL, StyleSheet } from 'renative';
+import { Api, Button, useNavigate, useOpenURL } from 'renative';
 import { withFocusable } from '@noriginmedia/react-spatial-navigation';
-import Theme, { themeStyles, hasWebFocusableUI } from '../theme';
-import config from '../../platformAssets/renative.runtime.json';
-import packageJson from '../../package.json';
-import icon from '../../platformAssets/runtime/logo.png';
-import { List } from '../components/list';
+import Theme, { themeStyles, hasWebFocusableUI } from '../../theme';
+import config from '../../../platformAssets/renative.runtime.json';
+import packageJson from '../../../package.json';
+import icon from '../../../platformAssets/runtime/logo.png';
+import { List } from '../../components/List';
+import { DATA } from '../../utils/data';
+import { styles } from './Home.styles';
 
-const styles = StyleSheet.create({
-    appContainerScroll: {
-        paddingTop: getScaledValue(50),
-        flex: 1
-    },
-    image: {
-        marginBottom: getScaledValue(30),
-        width: getScaledValue(83),
-        height: getScaledValue(97),
-    }
-});
+type Props = {
+    setFocus(id: string): void;
+};
 
 const FocusableView = withFocusable()(View);
 
-const ScreenHome = (props) => {
+const ScreenHome = (props: Props) => {
     const [bgColor, setBgColor] = useState(Theme.color1);
     const navigate = useNavigate(props);
     const openURL = useOpenURL();
@@ -55,7 +49,7 @@ const ScreenHome = (props) => {
                     {config.welcomeMessage}
                 </Text>
                 <Text style={themeStyles.textH2}>
-v
+                    v
                     {packageJson.version}
                 </Text>
                 <Text style={themeStyles.textH3}>
@@ -95,8 +89,11 @@ v
                     }}
                     onBecameFocused={handleFocus}
                 />
-                <List />
-                <FocusableView style={{ marginTop: 20, flexDirection: 'row' }} onBecameFocused={handleFocus}>
+                <List data={DATA} />
+                <FocusableView
+                    style={styles.buttonContainer}
+                    onBecameFocused={handleFocus}
+                >
                     <Button
                         iconFont="fontAwesome"
                         className="focusable"
@@ -127,4 +124,4 @@ v
     );
 };
 
-export default hasWebFocusableUI ? withFocusable()(ScreenHome) : ScreenHome;
+export const Home = hasWebFocusableUI ? withFocusable()(ScreenHome) : ScreenHome;

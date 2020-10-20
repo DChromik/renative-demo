@@ -3,7 +3,7 @@ import { Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { getScaledValue } from 'renative';
 import theme from '../theme';
 
-type Props = {
+export type Props = {
     label: string;
 };
 
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: theme.color2,
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    }
+    },
 });
 
 export const Packshot = ({ label }: Props) => (

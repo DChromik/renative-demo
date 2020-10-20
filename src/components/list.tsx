@@ -1,12 +1,10 @@
 import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
-import { Packshot } from './packshot';
+import { Packshot, Props as PackshotProps } from './Packshot';
 
-const DATA = [
-    { label: 'Item 1' },
-    { label: 'Item 2' },
-    { label: 'Item 3' },
-]
+type Props = {
+    data: PackshotProps[];
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -14,13 +12,11 @@ const styles = StyleSheet.create({
     },
 });
 
-export const List = () => {
-    return <FlatList
+export const List = ({ data }: Props) => (
+    <FlatList
         style={styles.container}
         horizontal
-        data={DATA} 
-        renderItem={({ item: { label } }) => {
-            return <Packshot label={label} />;
-        }}
-    />;
-}
+        data={data}
+        renderItem={({ item: { label } }) => <Packshot label={label} />}
+    />
+);

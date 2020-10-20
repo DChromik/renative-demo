@@ -1,19 +1,15 @@
 import React, { useEffect } from 'react';
 import { Text, View, ScrollView } from 'react-native';
-import { Button, getScaledValue, usePop, StyleSheet } from 'renative';
+import { Button, usePop } from 'renative';
 import { withFocusable } from '@noriginmedia/react-spatial-navigation';
-import Theme, { themeStyles, hasWebFocusableUI } from '../theme';
+import Theme, { themeStyles, hasWebFocusableUI } from '../../theme';
+import { styles } from './Modal.styles';
 
-const styles = StyleSheet.create({
-    header: {
-        width: '100%',
-        height: getScaledValue(80),
-        alignItems: 'flex-end',
-        paddingTop: getScaledValue(20)
-    }
-});
+type Props = {
+    setFocus(id: string): void;
+};
 
-const ScreenModal = props => {
+const ScreenModal = (props: Props) => {
     const pop = usePop(props);
     if (hasWebFocusableUI) {
         useEffect(() => {
@@ -52,4 +48,4 @@ const ScreenModal = props => {
     );
 };
 
-export default (hasWebFocusableUI ? withFocusable()(ScreenModal) : ScreenModal);
+export const Modal = hasWebFocusableUI ? withFocusable()(ScreenModal) : ScreenModal;

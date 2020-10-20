@@ -1,37 +1,28 @@
 import React from 'react';
-import { StyleSheet, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { CastButton } from 'react-native-google-cast';
-import { getScaledValue } from 'renative';
 import { Home, Modal, MyPage } from '../screens';
-import Menu, { DrawerButton } from '../components/menu';
+import { DrawerButton, Menu } from '../components';
 import Theme from '../theme';
+import { styles } from './index.styles';
+
+type Props = {
+    navigation: any;
+};
 
 const Stack = createStackNavigator();
 const ModalStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const styles = StyleSheet.create({
-    headerTitle: {
-        color: Theme.color3,
-        fontFamily: Theme.primaryFontFamily,
-        fontSize: getScaledValue(18)
-    },
-    header: {
-        backgroundColor: Theme.color1,
-        borderBottomWidth: 1,
-        height: getScaledValue(70)
-    }
-});
-
-const StackNavigator = ({ navigation }) => (
+const StackNavigator = ({ navigation }: Props) => (
     <Stack.Navigator
         screenOptions={{
             headerTitleStyle: styles.headerTitle,
             headerStyle: styles.header,
-            headerTintColor: Theme.color3
+            headerTintColor: Theme.color3,
         }}
     >
         <Stack.Screen
@@ -39,12 +30,15 @@ const StackNavigator = ({ navigation }) => (
             component={Home}
             options={{
                 headerLeft: () => <DrawerButton navigation={navigation} />,
-                headerRight: () => <CastButton style={{
-                    width: Theme.iconSize,
-                    height: Theme.iconSize,
-                    // @ts-ignore
-                    tintColor: Theme.color3,
-                }} />
+                headerRight: () => (
+                    <CastButton style={{
+                        width: Theme.iconSize,
+                        height: Theme.iconSize,
+                        // @ts-ignore
+                        tintColor: Theme.color3,
+                    }}
+                    />
+                ),
             }}
         />
         <Stack.Screen name="my-page" component={MyPage} />
@@ -58,7 +52,7 @@ const ModalNavigator = () => (
     </ModalStack.Navigator>
 );
 
-const App = () => {
+export const App = () => {
     React.useEffect(() => {
         StatusBar.setBarStyle(Theme.statusBar);
     }, []);
@@ -70,5 +64,3 @@ const App = () => {
         </NavigationContainer>
     );
 };
-
-export default App;

@@ -3,14 +3,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Home, Modal, MyPage } from '../screens';
-import Menu from '../components/menu';
+import { Menu } from '../components';
 
 const ModalStack = createStackNavigator();
 const TabStack = createMaterialTopTabNavigator();
 
 const TabNavigator = () => (
     <TabStack.Navigator
-        tabBar={props => <Menu {...props} />}
+        tabBar={(props) => <Menu {...props} />}
         removeClippedSubviews
         swipeEnabled={false}
         timingConfig={{ duration: 0.001 }}
@@ -20,7 +20,7 @@ const TabNavigator = () => (
     </TabStack.Navigator>
 );
 
-const App = () => (
+export const App = () => (
     <NavigationContainer>
         <ModalStack.Navigator
             headerMode="none"
@@ -32,5 +32,3 @@ const App = () => (
         </ModalStack.Navigator>
     </NavigationContainer>
 );
-
-export default App;
