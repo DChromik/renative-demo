@@ -8,6 +8,7 @@ const makeImageUrl = (path: string) => `https://image.tmdb.org/t/p/w500${path}`;
 export type Props = {
     label: string;
     poster: string;
+    onPress?: () => void;
 };
 
 const styles = StyleSheet.create({
@@ -36,8 +37,11 @@ const styles = StyleSheet.create({
     },
 });
 
-export const Packshot = ({ label, poster }: Props) => (
-    <TouchableOpacity style={styles.container}>
+export const Packshot = ({ label, poster, onPress }: Props) => (
+    <TouchableOpacity
+        style={styles.container}
+        onPress={onPress}
+    >
         <Image
             style={styles.image}
             source={{ uri: makeImageUrl(poster) }}

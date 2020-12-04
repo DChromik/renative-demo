@@ -36,6 +36,7 @@
         "react-native-screens": "2.2.0",
         "react-native-tab-view": "2.13.0",
         "react-native-vector-icons": "6.6.0",
+        "react-native-video": "^5.1.0-alpha8",
         "react-native-web": "0.13.12",
         "react-native-web-image-loader": "0.0.5",
         "renative": "0.31.0-RC.7",
@@ -43,12 +44,9 @@
     },
     "devDependencies": {
         "@rnv/engine-rn": "0.31.0-RC.7",
-        "@types/react-native": "^0.63.25",
-        "jetifier": "1.6.5",
-        "renative-template-hello-world": "0.31.0-RC.7",
-        "rnv": "0.31.0-RC.7",
-        "xcode": "2.1.0",
         "@types/node": "^14.0.27",
+        "@types/react-native": "^0.63.25",
+        "@types/react-native-video": "^5.0.3",
         "@typescript-eslint/eslint-plugin": "^3.9.0",
         "@typescript-eslint/parser": "^3.9.0",
         "eslint": "^7.7.0",
@@ -56,7 +54,11 @@
         "eslint-plugin-import": "^2.22.0",
         "eslint-plugin-jsx-a11y": "^6.3.1",
         "eslint-plugin-react": "^7.20.6",
-        "typescript": "^3.9.7"
+        "jetifier": "1.6.5",
+        "renative-template-hello-world": "0.31.0-RC.7",
+        "rnv": "0.31.0-RC.7",
+        "typescript": "^3.9.7",
+        "xcode": "2.1.0"
     },
     "optionalDependencies": {
         "ios-deploy": "1.10.0"

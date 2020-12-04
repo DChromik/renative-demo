@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useRef, Suspense } from 'react';
-import { Text, Image, View, ScrollView, PixelRatio } from 'react-native';
-import { Api, Button, useNavigate, useOpenURL } from 'renative';
+import React, { useEffect, useRef, Suspense } from 'react';
+import { Text, Image, View, ScrollView } from 'react-native';
+import { Button, useOpenURL, useNavigate } from 'renative';
 import { withFocusable } from '@noriginmedia/react-spatial-navigation';
 import Theme, { themeStyles, hasWebFocusableUI } from '../../theme';
-import config from '../../../platformAssets/renative.runtime.json';
-import packageJson from '../../../package.json';
 import icon from '../../../platformAssets/runtime/logo.png';
 import { List } from '../../components/List';
-import { DATA } from '../../utils/data';
 import { styles } from './Home.styles';
 
 type Props = {
@@ -17,6 +14,7 @@ type Props = {
 const FocusableView = withFocusable()(View);
 
 const ScreenHome = (props: Props) => {
+    const navigate = useNavigate(props);
     const openURL = useOpenURL();
     let scrollRef;
     let handleFocus;
@@ -39,7 +37,7 @@ const ScreenHome = (props: Props) => {
                 contentContainerStyle={themeStyles.container}
             >
                 <Suspense fallback={<Text>Fetching list</Text>}>
-                    <List />
+                    <List onPackshotPress={() => navigate('detail')} />
                 </Suspense>
                 <Image style={styles.image} source={icon} />
                 <FocusableView

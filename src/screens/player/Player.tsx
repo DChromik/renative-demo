@@ -1,3 +1,4 @@
-export const Player = () => {
-    return <div />;
-};
+import React from 'react';
+import { View } from 'react-native';
+
+export const Player = () => <View />;

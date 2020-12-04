@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { CastButton } from 'react-native-google-cast';
-import { Home, Modal, MyPage } from '../screens';
+import { Detail, Home, Modal, MyPage, Player } from '../screens';
 import { DrawerButton, Menu } from '../components';
 import Theme from '../theme';
 import { styles } from './index.styles';
@@ -42,6 +42,8 @@ const StackNavigator = ({ navigation }: Props) => (
             }}
         />
         <Stack.Screen name="my-page" component={MyPage} />
+        <Stack.Screen name="detail" component={Detail} />
+        <Stack.Screen name="player" component={Player} />
     </Stack.Navigator>
 );
 
